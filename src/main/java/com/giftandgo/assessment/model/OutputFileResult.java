@@ -1,4 +1,4 @@
-package com.giftandgo.assessment.web.model;
+package com.giftandgo.assessment.model;
 
 import java.util.List;
 
