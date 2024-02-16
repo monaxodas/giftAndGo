@@ -15,11 +15,10 @@ import com.giftandgo.assessment.configuration.FileProcessingConfiguration;
 import com.giftandgo.assessment.exception.RestrictedCountryException;
 import com.giftandgo.assessment.exception.RestrictedISPException;
 import com.giftandgo.assessment.exception.ValidationError;
-import com.giftandgo.assessment.model.InputFileEntry;
 import com.giftandgo.assessment.service.ValidationService;
 import com.giftandgo.assessment.service.impl.ValidationServiceImpl;
 
-public class ValidationServiceTest {
+class ValidationServiceTest {
 
     private ValidationService subject;
     private FileProcessingConfiguration configuration;
@@ -111,9 +110,10 @@ public class ValidationServiceTest {
     }
 
     @ParameterizedTest
-    @CsvSource({
+    @CsvSource( {
         "a6c972a0-5430-4566-a966-670de15185c1,1X1D14,Michael Jackson, Likes turtles,Rides a car, 50, 100.1",
         "a6c972a0-5430-4566-a966-670de15185c1  ,2X2D24,Mike Smith, Likes turtles  ,Rides an apple, 50, 50.1",
+        "a6c972a0-5430-4566-a966-670de15185c1  ,2X2D24,Mike Smith, Likes turtles  ,Drives an BMW, 50, 50.1",
         "fb7620f4-5ee8-44d4-82ab-57be08452213,3X3D35,Jenny Walters, Likes Avocados ,Rides a car, 99.99, 100",
     })
     void testFileLine_validFields(String uuid, String id, String name, String likes, String transport, String avgSpeed, String topSpeed) {

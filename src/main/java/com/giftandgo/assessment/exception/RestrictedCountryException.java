@@ -1,10 +1,10 @@
 package com.giftandgo.assessment.exception;
 
-public class RestrictedCountryException extends RuntimeException {
-    private final String country;
+import org.springframework.http.HttpStatus;
+
+public class RestrictedCountryException extends HttpException {
 
     public RestrictedCountryException(final String country) {
-        super("Country" + country + " is not allowed to invoke this API");
-        this.country = country;
+        super(HttpStatus.FORBIDDEN, "Country " + country + " is not allowed to invoke this API");
     }
 }

@@ -111,7 +111,7 @@ public class ValidationServiceImpl implements ValidationService {
     private String validateLikes(final int lineIndex, final String[] split) {
         final var column = ParsedColumn.LIKES;
         final var likes = split[column.ordinal()].trim();
-        if (fileProcessingConfiguration.getValidationEnabled() && !likes.matches("^Likes [A-Za-z]+$")) {
+        if (fileProcessingConfiguration.getValidationEnabled() && !likes.startsWith("Likes ")) {
             throwValidationError(column, lineIndex, likes);
         }
         return likes;
@@ -120,7 +120,7 @@ public class ValidationServiceImpl implements ValidationService {
     private String validateTransport(final int lineIndex, final String[] split) {
         final var column = ParsedColumn.TRANSPORT;
         final var transport = split[column.ordinal()].trim();
-        if (fileProcessingConfiguration.getValidationEnabled() && !transport.matches("^(Rides a|Rides an) [A-Za-z]+$")) {
+        if (fileProcessingConfiguration.getValidationEnabled() && (!transport.startsWith("Rides ") && !transport.startsWith("Drives "))) {
             throwValidationError(column, lineIndex, transport);
         }
         return transport;

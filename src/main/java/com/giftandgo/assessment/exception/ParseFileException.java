@@ -1,8 +1,10 @@
 package com.giftandgo.assessment.exception;
 
-public class ParseFileException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class ParseFileException extends HttpException {
 
     public ParseFileException(final Throwable throwable) {
-        super(throwable);
+        super(HttpStatus.INTERNAL_SERVER_ERROR, throwable.getMessage());
     }
 }

@@ -1,7 +1,9 @@
 package com.giftandgo.assessment.exception;
 
-public class GeolocationException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class GeolocationException extends HttpException {
     public GeolocationException(final String message) {
-        super(message);
+        super(HttpStatus.INTERNAL_SERVER_ERROR, message);
     }
 }

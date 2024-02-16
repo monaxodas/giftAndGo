@@ -10,7 +10,6 @@ import com.giftandgo.assessment.jpa.RequestLogEntityRepository;
 import com.giftandgo.assessment.model.GeolocationInfo;
 
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 public class RequestLoggingService {

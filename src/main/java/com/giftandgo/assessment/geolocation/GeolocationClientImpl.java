@@ -1,7 +1,5 @@
 package com.giftandgo.assessment.geolocation;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -14,20 +12,20 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class GeolocationClientImpl implements GeolocationClient {
-    public static final String URL = "http://ip-api.com/json/{query}";
-    public static final String FAIL_STATUS = "fail";
+    private final GeolocationClientConfiguration configuration;
 
     private final RestTemplate restTemplate;
 
-    public GeolocationClientImpl(final RestTemplate restTemplate) {
+    public GeolocationClientImpl(final RestTemplate restTemplate, final GeolocationClientConfiguration configuration) {
         this.restTemplate = restTemplate;
+        this.configuration = configuration;
     }
 
     @Override
     public GeolocationInfo getGeolocationForIpAddress(final String ipAddress) {
         try {
             log.debug("Initiating request to geolocation for ip address: {}", ipAddress);
-            String url = UriComponentsBuilder.fromHttpUrl(URL)
+            final String url = UriComponentsBuilder.fromHttpUrl(configuration.getUrl())
                 .buildAndExpand(ipAddress)
                 .toUriString();
             final var result = restTemplate.getForObject(url, GeolocationInfo.class);
